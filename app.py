@@ -1,14 +1,14 @@
 from apistar import App, Route
-from scraper_hb import get_price
+from scraper_hb import get_data
 
 def welcome(name=None):
     if name is None:
         return {'message': 'Welcome to API Star!'}
     return {'message': 'Welcome to API Star, %s!' % name}
 
-def price(url):
-    price = get_price(url)
-    return {'url': url, 'price': price}
+def data(url):
+    result = get_data(url)
+    return result
 
 routes = [
     Route('/', method='GET', handler=welcome),
