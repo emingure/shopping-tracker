@@ -1,5 +1,6 @@
 from apistar import App, Route
 from scraper_hb import get_data
+import os
 
 def welcome(name=None):
     if name is None:
@@ -12,11 +13,11 @@ def data(url):
 
 routes = [
     Route('/', method='GET', handler=welcome),
-    Route('/price/', method='POST', handler=price),
+    Route('/data/', method='POST', handler=data),
 ]
 
 app = App(routes=routes)
 
 
 if __name__ == '__main__':
-    app.serve('127.0.0.1', 5000, debug=True)
+    app.serve(os.environ['URL'], 5000, debug=True)
