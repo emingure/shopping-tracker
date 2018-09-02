@@ -36,7 +36,8 @@ def hepsiburada(url):
                         }
                         )
         stock += listing['quantity']
-    return {'url': url,
+    return {'productId': data['product']['productId'],
+            'url': url,
             'name': data['product']['name'],
             'brand': data['product']['brand'],
             'definition': data['product']['definitionName'],
@@ -63,7 +64,8 @@ def n11(url):
     p = re.search(r'dataLayer.push\((.*)\);', data)
     data = json.loads(p.group(1))
 
-    return {'url': url,
+    return {'productId': data['pId'],
+            'url': url,
             'name': data['title'],
             'brand': data['pBrand'],
             'definition': data['pCat4'],
@@ -90,6 +92,9 @@ def gittigidiyor(url):
     div = root.xpath('//*/meta[@itemprop="brand"]')
     brand = div[0].get('content')
 
+    div = root.xpath('//*/meta[@itemprop="productId"]')
+    productId = div[0].get('content')
+
     div = root.xpath('//*/meta[@itemprop="seller"]')
     seller = div[0].get('content')
 
@@ -106,7 +111,8 @@ def gittigidiyor(url):
     stock = int(div[0].value)
 
 
-    return {'url': url,
+    return {'productId': productId,
+            'url': url,
             'name': title,
             'brand': brand,
             'definition': defi,
