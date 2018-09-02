@@ -37,7 +37,8 @@ def hepsiburada(url):
                         }
                         )
         stock += listing['quantity']
-    return {'productId': data['product']['productId'],
+    return {'timestamp': time.time(),
+            'productId': data['product']['productId'],
             'url': url,
             'name': data['product']['name'],
             'brand': data['product']['brand'],
@@ -65,7 +66,8 @@ def n11(url):
     p = re.search(r'dataLayer.push\((.*)\);', data)
     data = json.loads(p.group(1))
 
-    return {'productId': data['pId'],
+    return {'timestamp': time.time(),
+            'productId': data['pId'],
             'url': url,
             'name': data['title'],
             'brand': data['pBrand'],
@@ -112,7 +114,8 @@ def gittigidiyor(url):
     stock = int(div[0].value)
 
 
-    return {'productId': productId,
+    return {'timestamp': time.time(),
+            'productId': productId,
             'url': url,
             'name': title,
             'brand': brand,
