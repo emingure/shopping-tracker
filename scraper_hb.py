@@ -5,6 +5,7 @@ import time
 import json
 import re
 from urllib.parse import urlparse
+import boto3
 
 
 
@@ -136,6 +137,13 @@ def get_data(url):
     else:
         code = 404
         result = 'Method for "' + host + '" not found'
+
+    if code == 200:
+        dynamodb = boto3.resource('dynamodb')
+        table = dynamodb.Table('stocks')
+        table.put_item(
+           Item=result
+        )
 
     return result
 
