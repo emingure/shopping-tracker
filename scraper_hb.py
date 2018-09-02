@@ -92,7 +92,7 @@ def gittigidiyor(url):
     div = root.xpath('//*/meta[@itemprop="brand"]')
     brand = div[0].get('content')
 
-    div = root.xpath('//*/meta[@itemprop="productId"]')
+    div = root.xpath('//*/meta[@itemprop="productID"]')
     productId = div[0].get('content')
 
     div = root.xpath('//*/meta[@itemprop="seller"]')
