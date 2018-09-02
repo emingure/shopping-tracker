@@ -137,7 +137,7 @@ def get_data(url):
         code = 404
         result = 'Method for "' + host + '" not found'
 
-    print(code, result)
+    return result
 
 # get_data(url)
 
