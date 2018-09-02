@@ -30,9 +30,9 @@ def hepsiburada(url):
         listings.append(
                         {
                             'store': listing['merchantName'],
-                            'price': listing['price']['amount'],
+                            'price': Decimal(str(listing['price']['amount'])) ,
                             'url': 'https://www.hepsiburada.com' + listing['merchantVariantUrl'],
-                            'stock': listing['quantity']
+                            'stock': Decimal(str(listing['quantity'])) 
 
                         }
                         )
@@ -43,10 +43,10 @@ def hepsiburada(url):
             'brand': data['product']['brand'],
             'definition': data['product']['definitionName'],
             'seller': data['product']['currentListing']['merchantName'],
-            'price': data['product']['currentListing']['currentPrice']['value'],
-            'originalPrice': data['product']['currentListing']['pricing']['listingPriceList'][0]['value'],
+            'price': Decimal(str(data['product']['currentListing']['currentPrice']['value'])),
+            'originalPrice': Decimal(str(data['product']['currentListing']['pricing']['listingPriceList'][0]['value'])),
             'listings': listings,
-            'stock': stock }
+            'stock': Decimal(str(stock)) }
 
 
 def n11(url):
@@ -71,9 +71,9 @@ def n11(url):
             'brand': data['pBrand'],
             'definition': data['pCat4'],
             'seller': seller,
-            'originalPrice': data['pOriginalPrice'],
-            'price': data['pDiscountedPrice'],
-            'stock': stock }
+            'originalPrice': Decimal(str(data['pOriginalPrice'])),
+            'price': Decimal(str(data['pDiscountedPrice'])),
+            'stock': Decimal(str(stock)) }
 
 
 def gittigidiyor(url):
@@ -118,9 +118,9 @@ def gittigidiyor(url):
             'brand': brand,
             'definition': defi,
             'seller': seller,
-            'originalPrice': originalPrice,
-            'price': price,
-            'stock': stock }
+            'originalPrice': Decimal(str(originalPrice)),
+            'price': Decimal(str(price)),
+            'stock': Decimal(str(stock)) }
 
 
 
