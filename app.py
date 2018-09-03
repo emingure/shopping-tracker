@@ -1,6 +1,7 @@
 from apistar import App, Route
 from scraper_hb import get_data
 import os
+from new import crawl
 
 def welcome(name=None):
     if name is None:
@@ -8,7 +9,7 @@ def welcome(name=None):
     return {'message': 'Welcome to API Star, %s!' % name}
 
 def data(url):
-    result = get_data(url)
+    result = crawl(url)
     return result
 
 routes = [
