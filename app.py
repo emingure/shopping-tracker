@@ -13,11 +13,11 @@ def data(url):
 
 routes = [
     Route('/', method='GET', handler=welcome),
-    Route('/data/', method='POST', handler=data),
+    Route('/data/', method='GET', handler=data),
 ]
 
 app = App(routes=routes)
 
 
 if __name__ == '__main__':
-    app.serve(os.environ['URL'], 5000, debug=True)
+    app.serve('159.89.8.122', 5000, debug=True)
