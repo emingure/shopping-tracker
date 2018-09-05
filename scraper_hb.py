@@ -84,16 +84,19 @@ def gittigidiyor(url):
     root = html.fromstring(r.content)
 
     div = root.xpath('//*[@id="ProductDetails"]/meta[@itemprop="price"]')
-    price = float(div[0].get('content'))
+    price = float(div[0].get('content').replace('.',''))
 
     div = root.xpath('//*[@class="price-css strike-price"]')
     if div:
-        originalPrice = float(re.search(r'(.*) TL', div[0][0].text).group(1).replace(',','.'))
+        originalPrice = float(re.search(r'(.*) TL', div[0][0].text).group(1).replace('.','').replace(',','.'))
     else:
         originalPrice = price
 
     div = root.xpath('//*/meta[@itemprop="brand"]')
-    brand = div[0].get('content')
+    if div:
+        brand = div[0].get('content')
+    else:
+        brand = 'None'
 
     div = root.xpath('//*/meta[@itemprop="productID"]')
     productId = div[0].get('content')
@@ -106,9 +109,13 @@ def gittigidiyor(url):
 
 
     div = root.xpath('/html/body/script[2]')
-    data = div[0].text
-    p = re.search(r'var TRACKING_PRODUCT_TITLE = \'(.*)\';', data)
-    title = p.group(1)
+    if div:
+        data = div[0].text
+        p = re.search(r'var TRACKING_PRODUCT_TITLE = \'(.*)\';', data)
+        title = p.group(1)
+    else:
+        title = 'None'
+    
 
     div = root.xpath('//*[@id="stockProduct"]')
     stock = int(div[0].value)
