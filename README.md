@@ -1,6 +1,6 @@
 # shopping-tracker
 
-This project aims to scrape daily deals from major Turkish e-shopping with the information scheme below. Data stores on Amazon DynamoDB with the index of urls.
+This project aims to scrape daily deals from major Turkish e-shopping with the information scheme below with the aim of stock tracking to create new trade oppurtunities. Data stores on Amazon DynamoDB with the index of urls.
 
 ```
 {   
